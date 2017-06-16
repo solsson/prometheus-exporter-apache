@@ -1,11 +1,10 @@
 FROM alpine:3.5
 
-RUN apk add --no-cache ca-certificates
-
 ADD apache_exporter.go /usr/src/apache_exporter/
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
+		ca-certificates \
 		bash \
 		gcc \
 		musl-dev \
