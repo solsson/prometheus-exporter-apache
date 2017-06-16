@@ -4,10 +4,6 @@ RUN apk add --no-cache ca-certificates
 
 ENV GOLANG_VERSION 1.8.3
 
-# https://golang.org/issue/14851 (Go 1.8 & 1.7)
-# https://golang.org/issue/17847 (Go 1.7)
-COPY *.patch /go-alpine-patches/
-
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
 		bash \
@@ -35,13 +31,8 @@ RUN set -eux; \
 	rm go.tgz; \
 	\
 	cd /usr/local/go/src; \
-	for p in /go-alpine-patches/*.patch; do \
-		[ -f "$p" ] || continue; \
-		patch -p2 -i "$p"; \
-	done; \
 	./make.bash; \
 	\
-	rm -rf /go-alpine-patches; \
 	apk del .build-deps; \
 	\
 	export PATH="/usr/local/go/bin:$PATH"; \
