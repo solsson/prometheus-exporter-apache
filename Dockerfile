@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.6
 
 ADD apache_exporter.go /usr/src/apache_exporter/
 
