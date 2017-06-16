@@ -2,9 +2,8 @@ FROM alpine:3.5
 
 RUN apk add --no-cache ca-certificates
 
-ENV GOLANG_VERSION 1.8.3
-
 RUN set -eux; \
+	export GOLANG_VERSION=1.8.3; \
 	apk add --no-cache --virtual .build-deps \
 		bash \
 		gcc \
