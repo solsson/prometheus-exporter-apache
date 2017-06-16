@@ -19,7 +19,7 @@ RUN set -eux; \
 	go get github.com/prometheus/client_golang/prometheus github.com/prometheus/common/log; \
 	env GOOS=linux GOARCH=amd64 go build .; \
 	ls -la *; \
-	rm -Rf linux_amd64 github.com; \
+	rm -Rf pkg src; \
 	mv apache_exporter /; \
 	apk del .build-deps
 
